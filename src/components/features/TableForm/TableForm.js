@@ -15,6 +15,11 @@ const TableForm = () => {
             </Form.Select>
           </Col>
         </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label column md="1" sm="12">
+            <strong>People: </strong>
+          </Form.Label>
+        </Form.Group>
       </Form>
     </>
   );
