@@ -3,9 +3,13 @@ import { useSelector } from "react-redux";
 import { getAllTables } from "../../../redux/tablesRedux";
 import { Link } from "react-router-dom";
 import styles from "./Tables.module.scss";
+import { getAllStatus } from "../../../redux/statusRedux";
 
 const Tables = () => {
   const tables = useSelector(getAllTables());
+  const statuses = useSelector(getAllStatus());
+
+  console.log("statusy", statuses);
   console.log(tables);
   return (
     <Container>

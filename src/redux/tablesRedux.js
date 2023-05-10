@@ -2,6 +2,10 @@
 export const getAllTables = () => {
   return (state) => state.tables;
 };
+
+export const getTableById = ({ tables }, id) =>
+  tables.find((table) => table.id === id);
+
 //actions
 const createActionName = (actionName) => `app/tables/${actionName}`;
 const UPDATE_TABLES = createActionName("UPDATE_TABLES");
