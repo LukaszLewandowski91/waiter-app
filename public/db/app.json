@@ -1,7 +1,7 @@
 {
   "tables": [
     {
-      "status": "Busy",
+      "status": "Cleaning",
       "peopleAmount": "3",
       "maxPeopleAmount": "4",
       "bill": "20",
@@ -9,9 +9,9 @@
     },
     {
       "status": "Cleaning",
-      "peopleAmount": "",
+      "peopleAmount": "1",
       "maxPeopleAmount": 3,
-      "bill": "",
+      "bill": "20",
       "id": "2"
     },
     {

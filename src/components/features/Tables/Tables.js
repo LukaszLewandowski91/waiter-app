@@ -1,18 +1,19 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAllTables } from "../../../redux/tablesRedux";
 import { Link } from "react-router-dom";
 import styles from "./Tables.module.scss";
-import { getAllStatus } from "../../../redux/statusRedux";
 
 const Tables = () => {
   const tables = useSelector(getAllTables());
-  const statuses = useSelector(getAllStatus());
 
-  console.log("statusy", statuses);
-  console.log(tables);
   return (
     <Container>
+      {tables.length === 0 && (
+        <div className="d-flex justify-content-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
       {tables.map((table) => (
         <Row key={table.id} className={styles.borderTable}>
           <Col className={"col-6 d-flex align-items-center"}>
