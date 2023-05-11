@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAllStatus } from "../../../redux/statusRedux";
 
-const TableForm = ({ actionText, ...props }) => {
+const TableForm = ({ action, actionText, ...props }) => {
   const [status, setStatus] = useState(props.status || "");
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || "");
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(
@@ -13,11 +13,20 @@ const TableForm = ({ actionText, ...props }) => {
 
   const statuses = useSelector(getAllStatus());
 
+  const handleSubmit = () => {
+    action({
+      status,
+      peopleAmount,
+      maxPeopleAmount,
+      bill,
+    });
+  };
+
   return (
     <>
       <h1>Table</h1>
-      <Form>
-        <Form.Group as={Row}>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" as={Row}>
           <Form.Label column md="1" sm="12">
             <strong>Status: </strong>
           </Form.Label>
@@ -34,7 +43,7 @@ const TableForm = ({ actionText, ...props }) => {
             </Form.Select>
           </Col>
         </Form.Group>
-        <Form.Group as={Row}>
+        <Form.Group className="mb-3" as={Row}>
           <Form.Label column md="1" sm="12">
             <strong>People: </strong>
           </Form.Label>
@@ -53,7 +62,7 @@ const TableForm = ({ actionText, ...props }) => {
             />
           </Col>
         </Form.Group>
-        <Form.Group as={Row}>
+        <Form.Group className="mb-3" as={Row}>
           <Form.Label column md="1" sm="12">
             <strong>Bill: $</strong>
           </Form.Label>
@@ -65,6 +74,9 @@ const TableForm = ({ actionText, ...props }) => {
             />
           </Col>
         </Form.Group>
+        <Button variant="primary" type="submit">
+          {actionText}
+        </Button>
       </Form>
     </>
   );
