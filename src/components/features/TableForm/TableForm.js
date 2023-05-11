@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAllStatus } from "../../../redux/statusRedux";
@@ -21,6 +21,19 @@ const TableForm = ({ action, actionText, ...props }) => {
       bill,
     });
   };
+
+  useEffect(() => {
+    if (status === "Free" || status === "Cleaning") {
+      setPeopleAmount(0);
+      setBill(0);
+    }
+  }, [status]);
+
+  useEffect(() => {
+    if (peopleAmount > maxPeopleAmount) {
+      setPeopleAmount(maxPeopleAmount || peopleAmount);
+    }
+  }, [maxPeopleAmount]);
 
   return (
     <>
@@ -51,6 +64,8 @@ const TableForm = ({ action, actionText, ...props }) => {
             <Form.Control
               value={peopleAmount}
               type="number"
+              min={0}
+              max={maxPeopleAmount}
               style={{ width: "70px" }}
               onChange={(e) => setPeopleAmount(e.target.value)}
             />
@@ -59,6 +74,8 @@ const TableForm = ({ action, actionText, ...props }) => {
             <Form.Control
               value={maxPeopleAmount}
               type="number"
+              min={0}
+              max={10}
               style={{ width: "70px" }}
               onChange={(e) => setMaxPeopleAmount(e.target.value)}
             />
