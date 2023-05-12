@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { getAllStatus } from "../../../redux/statusRedux";
 
 const TableForm = ({ action, actionText, actionName, ...props }) => {
-  const [status, setStatus] = useState(props.status || "");
+  const [status, setStatus] = useState(props.status || "Busy");
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || "");
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(
     props.maxPeopleAmount || ""
@@ -80,6 +80,7 @@ const TableForm = ({ action, actionText, actionName, ...props }) => {
               max={10}
               style={{ width: "70px" }}
               onChange={(e) => setMaxPeopleAmount(e.target.value)}
+              required
             />
           </Col>
         </Form.Group>

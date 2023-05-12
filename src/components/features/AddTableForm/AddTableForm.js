@@ -12,7 +12,13 @@ const AddTableForm = () => {
     navigate("/");
   };
   return (
-    <TableForm action={handleSubmit} actionText="Add" actionName="New Table" />
+    <>
+      <TableForm
+        action={handleSubmit}
+        actionText="Add"
+        actionName="New Table"
+      />
+    </>
   );
 };
 

@@ -12,10 +12,12 @@ const createActionName = (actionName) => `app/tables/${actionName}`;
 const UPDATE_TABLES = createActionName("UPDATE_TABLES");
 const EDIT_TABLE = createActionName("EDIT_TABLE");
 const ADD_TABLE = createActionName("ADD_TABLE");
+const REMOVE_TABLE = createActionName("REMOVE_TABLE");
 //action creators
 export const updateTables = (payload) => ({ type: UPDATE_TABLES, payload });
 export const editTable = (payload) => ({ type: EDIT_TABLE, payload });
 export const addTable = (payload) => ({ type: ADD_TABLE, payload });
+export const removeTable = (payload) => ({ type: REMOVE_TABLE, payload });
 
 export const fetchTables = () => {
   return (dispatch) => {
@@ -35,7 +37,7 @@ export const editTablesRequest = (table) => {
       body: JSON.stringify(table),
     };
 
-    fetch("http://localhost:3131/tables/" + table.id, options).then(() =>
+    fetch("http://localhost:3131/api/tables/" + table.id, options).then(() =>
       dispatch(editTable(table))
     );
   };
@@ -50,8 +52,19 @@ export const addTableRequest = (table) => {
       },
       body: JSON.stringify(table),
     };
-    fetch("http://localhost:3131/tables", options).then(() =>
+    fetch("http://localhost:3131/api/tables", options).then(() =>
       dispatch(addTable(table))
+    );
+  };
+};
+
+export const removeTableRequest = (id) => {
+  return (dispatch) => {
+    const options = {
+      method: "DELETE",
+    };
+    fetch("http://localhost:3131/api/tables/" + id, options).then(() =>
+      dispatch(removeTable(id))
     );
   };
 };
@@ -66,6 +79,8 @@ const tablesReducer = (statePart = [], action) => {
       );
     case ADD_TABLE:
       return [...statePart, { ...action.payload, id: shortid() }];
+    case REMOVE_TABLE:
+      return [...statePart.filter((table) => table.id !== action.payload)];
     default:
       return statePart;
   }
