@@ -1,4 +1,5 @@
 import shortid from "shortid";
+import { API_URL } from "../config";
 //selectors
 export const getAllTables = () => {
   return (state) => state.tables;
@@ -21,7 +22,7 @@ export const removeTable = (payload) => ({ type: REMOVE_TABLE, payload });
 
 export const fetchTables = () => {
   return (dispatch) => {
-    fetch("http://localhost:3131/api/tables")
+    fetch(API_URL + "/tables")
       .then((res) => res.json())
       .then((tables) => dispatch(updateTables(tables)));
   };
@@ -37,7 +38,7 @@ export const editTablesRequest = (table) => {
       body: JSON.stringify(table),
     };
 
-    fetch("http://localhost:3131/api/tables/" + table.id, options).then(() =>
+    fetch(API_URL + "/tables/" + table.id, options).then(() =>
       dispatch(editTable(table))
     );
   };
@@ -52,9 +53,7 @@ export const addTableRequest = (table) => {
       },
       body: JSON.stringify(table),
     };
-    fetch("http://localhost:3131/api/tables", options).then(() =>
-      dispatch(addTable(table))
-    );
+    fetch(API_URL + "/tables", options).then(() => dispatch(addTable(table)));
   };
 };
 
@@ -63,7 +62,7 @@ export const removeTableRequest = (id) => {
     const options = {
       method: "DELETE",
     };
-    fetch("http://localhost:3131/api/tables/" + id, options).then(() =>
+    fetch(API_URL + "/tables/" + id, options).then(() =>
       dispatch(removeTable(id))
     );
   };
