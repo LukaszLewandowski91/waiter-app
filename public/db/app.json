@@ -1,8 +1,8 @@
 {
   "tables": [
     {
-      "status": "Reserved",
-      "peopleAmount": 0,
+      "status": "Busy",
+      "peopleAmount": "1",
       "maxPeopleAmount": "4",
       "bill": 0,
       "id": "1"
