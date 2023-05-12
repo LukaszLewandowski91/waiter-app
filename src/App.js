@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { fetchTables } from "./redux/tablesRedux";
 import EditTable from "./components/pages/EditTable/EditTable";
 import { fetchStatus } from "./redux/statusRedux";
+import AddTable from "./components/pages/AddTable/AddTable";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tables/:id" element={<EditTable />} />
+        <Route path="/add-table" element={<AddTable />} />
       </Routes>
       <Footer />
     </Container>

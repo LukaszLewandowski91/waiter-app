@@ -29,6 +29,11 @@ const Tables = () => {
           </Col>
         </Row>
       ))}
+      <Link to="/add-table">
+        <Button className="mt-3" variant="outline-success">
+          Add new table
+        </Button>
+      </Link>
     </Container>
   );
 };

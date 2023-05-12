@@ -3,7 +3,7 @@ import { Form, Col, Row, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { getAllStatus } from "../../../redux/statusRedux";
 
-const TableForm = ({ action, actionText, ...props }) => {
+const TableForm = ({ action, actionText, actionName, ...props }) => {
   const [status, setStatus] = useState(props.status || "");
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || "");
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(
@@ -37,7 +37,9 @@ const TableForm = ({ action, actionText, ...props }) => {
 
   return (
     <>
-      <h1>Table {props.id}</h1>
+      <h1>
+        {actionName} {props.id}
+      </h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" as={Row}>
           <Form.Label column md="1" sm="12">

@@ -15,7 +15,14 @@ const EditTableForm = () => {
     navigate("/");
   };
   if (!tableData) return <Navigate to="/" />;
-  return <TableForm action={handleSubmit} {...tableData} actionText="Update" />;
+  return (
+    <TableForm
+      action={handleSubmit}
+      {...tableData}
+      actionText="Update"
+      actionName="Table"
+    />
+  );
 };
 
 export default EditTableForm;
